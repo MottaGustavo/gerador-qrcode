@@ -261,6 +261,52 @@ button.generate:hover {
 
 #qrcode img, #qrcode canvas { max-width: 100%; display: block; }
 
+/* INSTRUÇÃO MOBILE */
+.mobile-hint {
+  display: none;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  background: rgba(92, 58, 30, 0.06);
+  border: 1.5px dashed var(--marrom);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  animation: fadeIn 0.4s ease;
+}
+
+.mobile-hint.show { display: flex; }
+
+.mobile-hint-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.mobile-hint-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-hint-text strong {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--marrom);
+  letter-spacing: -0.2px;
+}
+
+.mobile-hint-text span {
+  font-size: 13px;
+  color: var(--cinza-500);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* DOWNLOAD */
 .actions {
   display: grid;

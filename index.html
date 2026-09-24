@@ -1,216 +1,325 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gerador de QR Code</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="diagram.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de QR Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="diagram.svg" type="image/svg+xml">
 </head>
+
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <div class="header">
-    <h1>Gere QR Codes<br>para <span>qualquer link</span>.</h1>
-    <p>Ferramenta para criar QR Codes personalizados. Escolha o tipo, preencha e baixe.</p>
-  </div>
-
-  <!-- ABAS -->
-  <div class="tabs">
-    <button class="tab active" data-tab="custom">Livre</button>
-    <button class="tab" data-tab="whatsapp">WhatsApp</button>
-    <button class="tab help" data-tab="howto">? como usar</button>
-  </div>
-
-  <!-- LIVRE -->
-  <div class="panel active" id="panel-custom">
-
-    <label for="custom-url">URL</label>
-    <input type="url" id="custom-url" placeholder="https://exemplo.com">
-  </div>
-
-  <!-- WHATSAPP -->
-  <div class="panel" id="panel-whatsapp">
-
-    <label for="wpp-number">Número do WhatsApp</label>
-    <input type="text" id="wpp-number" placeholder="5547999999999">
-
-    <label for="wpp-message">Mensagem pré-preenchida (opcional)</label>
-    <textarea id="wpp-message" placeholder="Olá! Vim pelo QR Code e quero saber mais..."></textarea>
-  </div>
-
-  <!-- COMO USAR -->
-  <div class="panel" id="panel-howto">
-    <div class="how-to">
-      <h3>Como <span>usar</span>.</h3>
-      <p>Escolha a aba do tipo de link, preencha os dados e clique em <strong>Gerar QR Code</strong>.</p>
-
-      <h4>Livre</h4>
-      <ol>
-        <li>Cole a URL completa, sempre com <code>https://</code></li>
-        <li>Funciona com site, formulário, catálogo, rede social — qualquer link</li>
-        <li>Clique em <code>Gerar QR Code</code> e baixe o PNG</li>
-      </ol>
-
-      <h4>WhatsApp</h4>
-      <ol>
-        <li>Digite o número com <code>55</code> + DDD + número (só dígitos)</li>
-        <li>Escreva a mensagem que já virá pronta (opcional)</li>
-        <li>Gere o QR — quem escanear abre a conversa direto</li>
-      </ol>
-
-      <h4>Dicas</h4>
-      <ul>
-        <li>Use <strong>fundo claro</strong> e <strong>QR escuro</strong> para melhor leitura</li>
-        <li>Sempre <strong>teste escaneando</strong> com o celular antes de usar</li>
-        <li>Para impressão em tamanhos grandes, use o tamanho máximo (1000 px)</li>
-      </ul>
+    <div class="header">
+      <h1>Gere QR Codes<br>para <span>qualquer link</span>.</h1>
+      <p>Ferramenta para criar QR Codes personalizados. Escolha o tipo, preencha e baixe.</p>
     </div>
-  </div>
 
-  <!-- PREVIEW DO LINK -->
-  <div class="link-preview" id="link-preview">
-    <div id="link-text"></div>
-    <div class="link-preview-actions">
-      <button onclick="copiarLink()">Copiar</button>
-      <button onclick="testarLink()">Testar</button>
+    <!-- ABAS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="custom">Livre</button>
+      <button class="tab" data-tab="whatsapp">WhatsApp</button>
+      <button class="tab help" data-tab="howto">? como usar</button>
     </div>
-  </div>
 
-  <!-- OPÇÕES -->
-  <div class="advanced">
-    <div class="slider-row">
-      <label for="size">Tamanho</label>
-      <span class="value" id="size-value">400 px</span>
+    <!-- LIVRE -->
+    <div class="panel active" id="panel-custom">
+
+      <label for="custom-url">URL</label>
+      <input type="url" id="custom-url" placeholder="https://exemplo.com">
     </div>
-    <input type="range" id="size" min="200" max="1000" step="50" value="400">
+
+    <!-- WHATSAPP -->
+    <div class="panel" id="panel-whatsapp">
+
+      <label for="wpp-number">Número do WhatsApp</label>
+      <input type="text" id="wpp-number" placeholder="5547999999999">
+
+      <label for="wpp-message">Mensagem pré-preenchida (opcional)</label>
+      <textarea id="wpp-message" placeholder="Olá! Vim pelo QR Code e quero saber mais..."></textarea>
+    </div>
+
+    <!-- COMO USAR -->
+    <div class="panel" id="panel-howto">
+      <div class="how-to">
+        <h3>Como <span>usar</span>.</h3>
+        <p>Escolha a aba do tipo de link, preencha os dados e clique em <strong>Gerar QR Code</strong>.</p>
+
+        <h4>Livre</h4>
+        <ol>
+          <li>Cole a URL completa, sempre com <code>https://</code></li>
+          <li>Funciona com site, formulário, catálogo, rede social — qualquer link</li>
+          <li>Clique em <code>Gerar QR Code</code> e baixe o PNG</li>
+        </ol>
+
+        <h4>WhatsApp</h4>
+        <ol>
+          <li>Digite o número com <code>55</code> + DDD + número (só dígitos)</li>
+          <li>Escreva a mensagem que já virá pronta (opcional)</li>
+          <li>Gere o QR — quem escanear abre a conversa direto</li>
+        </ol>
+
+        <h4>Salvar a imagem</h4>
+        <ul>
+          <li><strong>Desktop:</strong> clique em <code>Baixar PNG</code> e o arquivo baixa direto</li>
+          <li><strong>Celular:</strong> segure a imagem do QR Code → <code>Salvar em Fotos</code></li>
+          <li>Ou use o botão <code>Baixar PNG</code> para abrir o menu de compartilhamento</li>
+        </ul>
+
+        <h4>Dicas</h4>
+        <ul>
+          <li>Use <strong>fundo claro</strong> e <strong>QR escuro</strong> para melhor leitura</li>
+          <li>Sempre <strong>teste escaneando</strong> com o celular antes de usar</li>
+          <li>Para impressão em tamanhos grandes, use o tamanho máximo (1000 px)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PREVIEW DO LINK -->
+    <div class="link-preview" id="link-preview">
+      <div id="link-text"></div>
+      <div class="link-preview-actions">
+        <button onclick="copiarLink()">Copiar</button>
+        <button onclick="testarLink()">Testar</button>
+      </div>
+    </div>
+
+    <!-- OPÇÕES -->
+    <div class="advanced">
+      <div class="slider-row">
+        <label for="size">Tamanho</label>
+        <span class="value" id="size-value">400 px</span>
+      </div>
+      <input type="range" id="size" min="200" max="1000" step="50" value="400">
+    </div>
+
+    <!-- BOTÃO GERAR -->
+    <button class="generate" onclick="gerar()">Gerar QR Code</button>
+
+    <!-- QR -->
+    <div id="qrcode-wrapper">
+      <div id="qrcode"></div>
+    </div>
+
+    <!-- INSTRUÇÃO MOBILE -->
+    <div class="mobile-hint" id="mobile-hint">
+      <span class="mobile-hint-icon">📱</span>
+      <div class="mobile-hint-text">
+        <strong>Segure a imagem acima</strong>
+        <span>→ Salvar em Fotos</span>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD -->
+    <div class="actions">
+      <button onclick="baixarPNG()">Baixar PNG</button>
+    </div>
+
   </div>
 
-  <!-- BOTÃO GERAR -->
-  <button class="generate" onclick="gerar()">Gerar QR Code</button>
+  <!-- Biblioteca QRCode.js -->
+  <script src="qrcode.min.js"></script>
 
-  <!-- QR -->
-  <div id="qrcode-wrapper">
-    <div id="qrcode"></div>
-  </div>
+  <script>
+    // ===== DETECTAR MOBILE =====
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
-  <!-- DOWNLOAD -->
-  <div class="actions">
-    <button onclick="baixarPNG()">Baixar PNG</button>
-  </div>
-
-</div>
-
-<!-- Biblioteca QRCode.js -->
-<script src="qrcode.min.js"></script>
-
-<script>
-  // ===== TABS =====
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
-      atualizarPreview();
+    // ===== TABS =====
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+        atualizarPreview();
+      });
     });
-  });
 
-  // ===== SLIDER =====
-  const sizeInput = document.getElementById('size');
-  const sizeValue = document.getElementById('size-value');
-  sizeInput.addEventListener('input', () => {
-    sizeValue.textContent = sizeInput.value + ' px';
-  });
+    // ===== SLIDER =====
+    const sizeInput = document.getElementById('size');
+    const sizeValue = document.getElementById('size-value');
+    sizeInput.addEventListener('input', () => {
+      sizeValue.textContent = sizeInput.value + ' px';
+    });
 
-  // ===== MONTAR LINK =====
-  function montarLink() {
-    const tab = document.querySelector('.tab.active').dataset.tab;
+    // ===== MONTAR LINK =====
+    function montarLink() {
+      const tab = document.querySelector('.tab.active').dataset.tab;
 
-    if (tab === 'whatsapp') {
-      const num = document.getElementById('wpp-number').value.replace(/\D/g, '');
-      const msg = document.getElementById('wpp-message').value.trim();
-      if (!num) return '';
-      return 'https://wa.me/' + num + (msg ? '?text=' + encodeURIComponent(msg) : '');
+      if (tab === 'whatsapp') {
+        const num = document.getElementById('wpp-number').value.replace(/\D/g, '');
+        const msg = document.getElementById('wpp-message').value.trim();
+        if (!num) return '';
+        return 'https://wa.me/' + num + (msg ? '?text=' + encodeURIComponent(msg) : '');
+      }
+
+      if (tab === 'custom') {
+        return document.getElementById('custom-url').value.trim();
+      }
+
+      return '';
     }
 
-    if (tab === 'custom') {
-      return document.getElementById('custom-url').value.trim();
-    }
-
-    return '';
-  }
-
-  // ===== PREVIEW =====
-  function atualizarPreview() {
-    const link = montarLink();
-    const box = document.getElementById('link-preview');
-    const txt = document.getElementById('link-text');
-    if (link) {
-      txt.textContent = '$ ' + link;
-      box.classList.add('show');
-    } else {
-      box.classList.remove('show');
-    }
-  }
-
-  document.querySelectorAll('input[type="text"], input[type="url"], textarea').forEach(el => {
-    el.addEventListener('input', atualizarPreview);
-  });
-
-  // ===== COPIAR / TESTAR =====
-  function copiarLink() {
-    const link = montarLink();
-    if (!link) return;
-    navigator.clipboard.writeText(link).then(() => {
+    // ===== PREVIEW =====
+    function atualizarPreview() {
+      const link = montarLink();
+      const box = document.getElementById('link-preview');
       const txt = document.getElementById('link-text');
-      const original = txt.textContent;
-      txt.textContent = '✓ link copiado';
-      setTimeout(() => { txt.textContent = original; }, 1500);
+      if (link) {
+        txt.textContent = '$ ' + link;
+        box.classList.add('show');
+      } else {
+        box.classList.remove('show');
+      }
+    }
+
+    document.querySelectorAll('input[type="text"], input[type="url"], textarea').forEach(el => {
+      el.addEventListener('input', atualizarPreview);
     });
-  }
 
-  function testarLink() {
-    const link = montarLink();
-    if (!link) return;
-    window.open(link, '_blank');
-  }
+    // ===== COPIAR / TESTAR =====
+    function copiarLink() {
+      const link = montarLink();
+      if (!link) return;
+      navigator.clipboard.writeText(link).then(() => {
+        const txt = document.getElementById('link-text');
+        const original = txt.textContent;
+        txt.textContent = '✓ link copiado';
+        setTimeout(() => { txt.textContent = original; }, 1500);
+      });
+    }
 
-  // ===== GERAR =====
-  function gerar() {
-    const link = montarLink();
-    if (!link) { alert('Preencha os dados primeiro.'); return; }
+    function testarLink() {
+      const link = montarLink();
+      if (!link) return;
+      window.open(link, '_blank');
+    }
 
-    const size = parseInt(sizeInput.value);
-    const div = document.getElementById('qrcode');
-    div.innerHTML = '';
+    // ===== GERAR =====
+    function gerar() {
+      const link = montarLink();
+      if (!link) { alert('Preencha os dados primeiro.'); return; }
 
-    new QRCode(div, {
-      text: link,
-      width: size,
-      height: size,
-      colorDark: '#0A0A0A',
-      colorLight: '#FFFFFF',
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  }
+      const size = parseInt(sizeInput.value);
+      const div = document.getElementById('qrcode');
+      div.innerHTML = '';
 
-  // ===== DOWNLOAD =====
-  function baixarPNG() {
-    const canvas = document.querySelector('#qrcode canvas');
-    if (!canvas) { alert('Gere o QR Code primeiro.'); return; }
-    const a = document.createElement('a');
-    a.download = 'qrcode.png';
-    a.href = canvas.toDataURL('image/png');
-    a.click();
-  }
+      new QRCode(div, {
+        text: link,
+        width: size,
+        height: size,
+        colorDark: '#0A0A0A',
+        colorLight: '#FFFFFF',
+        correctLevel: QRCode.CorrectLevel.H
+      });
 
-  atualizarPreview();
-</script>
+      // Mostra a instrução só no mobile
+      if (isMobile) {
+        document.getElementById('mobile-hint').classList.add('show');
+      }
+    }
+
+    // ===== DOWNLOAD =====
+    function baixarPNG() {
+      const canvas = document.querySelector('#qrcode canvas');
+      if (!canvas) { alert('Gere o QR Code primeiro.'); return; }
+
+      // Desktop: baixa direto
+      if (!isMobile) {
+        canvas.toBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'qrcode.png';
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }, 'image/png');
+        return;
+      }
+
+      // Mobile: Web Share API primeiro
+      canvas.toBlob((blob) => {
+        if (!blob) { alert('Erro ao gerar imagem.'); return; }
+        const file = new File([blob], 'qrcode.png', { type: 'image/png' });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          navigator.share({
+            files: [file],
+            title: 'QR Code'
+          }).catch((err) => {
+            if (err.name !== 'AbortError') {
+              abrirImagemParaSalvar(canvas);
+            }
+          });
+          return;
+        }
+        abrirImagemParaSalvar(canvas);
+      }, 'image/png');
+    }
+
+    // ===== FALLBACK: ABRIR IMAGEM EM NOVA ABA =====
+    function abrirImagemParaSalvar(canvas) {
+      const dataURL = canvas.toDataURL('image/png');
+      const w = window.open();
+      if (!w) { alert('Permita pop-ups para salvar a imagem.'); return; }
+
+      w.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Salvar QR Code</title>
+            <style>
+              * { box-sizing: border-box; margin: 0; padding: 0; }
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                background: #FAFAFA;
+                display: flex; flex-direction: column;
+                align-items: center; justify-content: center;
+                min-height: 100vh; padding: 24px; text-align: center;
+              }
+              h1 { font-size: 20px; color: #0A0A0A; margin-bottom: 8px; font-weight: 700; }
+              p { color: #666; font-size: 15px; margin-bottom: 24px; max-width: 320px; line-height: 1.5; }
+              img {
+                width: 100%; max-width: 320px; background: #fff; padding: 16px;
+                border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+              }
+              .hint {
+                margin-top: 24px; color: #5C3A1E; font-weight: 700; font-size: 15px;
+                font-family: monospace; padding: 12px 20px;
+                background: rgba(92, 58, 30, 0.08); border-radius: 8px;
+              }
+              .close {
+                margin-top: 32px; padding: 12px 24px; background: #0A0A0A;
+                color: #fff; border: none; border-radius: 8px;
+                font-size: 14px; font-weight: 600; cursor: pointer;
+              }
+            </style>
+          </head>
+          <body>
+            <h1>Seu QR Code está pronto</h1>
+            <p>Toque e segure na imagem abaixo para salvar na sua galeria</p>
+            <img src="${dataURL}" alt="QR Code">
+            <p class="hint">toque longo → "Salvar em Fotos"</p>
+            <button class="close" onclick="window.close()">Fechar</button>
+          </body>
+        </html>
+      `);
+      w.document.close();
+    }
+
+    atualizarPreview();
+  </script>
 
 </body>
+
 </html>
